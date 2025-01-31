@@ -1,5 +1,4 @@
 # Docker-Compose Version
-version: '3.9'
 name: 'ticket-platform'
 services:
     ticket:
@@ -36,20 +35,19 @@ services:
     mysql:
         image: mysql:latest
         container_name: ticket-db
-        restart: unless-stopped
         environment:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: ticket
-            MYSQL_USER: root
-            MYSQL_PASSWORD: root
-        
+#            MYSQL_USER: root
+#            MYSQL_PASSWORD: root
+
         healthcheck:
             test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
             retries: 3
             timeout: 5s
         tty: true
         ports:
-            - "33061:3306"
+            - "3308:3306"
         volumes:
             - ticket-mysql-data:/var/lib/mysql
         networks:

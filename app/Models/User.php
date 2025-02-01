@@ -24,9 +24,20 @@ class User extends Authenticatable implements JWTSubject
         'meta'
     ];
 
+    /**
+     * @var string[] $casts
+     */
     protected $casts = [
         'meta' => 'array',
         'role' => 'array'
+    ];
+
+    /**
+     * @var string[] $attributes
+     * set default value for role
+     */
+    protected $attributes = [
+        'role' => '["user"]',
     ];
 
     // for JWT Token:

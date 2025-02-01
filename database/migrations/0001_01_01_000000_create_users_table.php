@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('mobile');
             $table->json('meta')->nullable();
             $table->string('password')->nullable();
+            $table->json('role');
             $table->rememberToken();
             $table->timestamps();
         });

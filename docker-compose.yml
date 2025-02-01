@@ -1,62 +1,37 @@
-# Docker-Compose Version
-name: 'ticket-platform'
 services:
-    ticket:
+    app:
         build:
-            context: ./
-            dockerfile: docker/ticket/local.Dockerfile
-        restart: unless-stopped
-        working_dir: /var/www
-        tty: true
-        volumes:
-            - ./:/var/www
+            context: .
+            dockerfile: docker/ticket/Dockerfile
+        container_name: ticket_app
         ports:
             - "8083:8083"
-        depends_on:
-            - mysql
-            - redis
-        networks:
-            - ticket
-    # Redis
-    redis:
-        image: redis:alpine
-        restart: unless-stopped
-        healthcheck:
-            test: [ "CMD", "redis-cli", "ping" ]
-            retries: 3
-            timeout: 5s
-        ports:
-            - "6380:6379"
         volumes:
-            - ticket-redis-data:/data
-        networks:
-            - ticket
-    # MySQL
-    mysql:
-        image: mysql:latest
-        container_name: ticket-db
+            - .:/app
         environment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: ticket
-#            MYSQL_USER: root
-#            MYSQL_PASSWORD: root
-
-        healthcheck:
-            test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
-            retries: 3
-            timeout: 5s
-        tty: true
-        ports:
-            - "3308:3306"
-        volumes:
-            - ticket-mysql-data:/var/lib/mysql
+            COMPOSER_ALLOW_SUPERUSER: '1'
+        command: ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8083"]
+        depends_on:
+            - db
         networks:
-            - ticket
+            - ticket-network
+
+    db:
+        image: mysql:latest
+        restart: always
+        environment:
+            MYSQL_DATABASE: 'ticket'
+            MYSQL_ROOT_PASSWORD: 'root'
+        ports:
+            - '3308:3306'
+        volumes:
+            - my-db:/var/lib/mysql
+        networks:
+            - ticket-network
 
 volumes:
-    ticket-mysql-data:
-    ticket-redis-data:
-# Networks
+    my-db:
+
 networks:
-    ticket:
-        driver: bridge
+    ticket-network:
+

@@ -17,7 +17,7 @@ class AuthRepository
             ]);
     }
 
-    public function get(array $data): Auth
+    public function get(array $data): Auth|null
     {
         return Auth::query()
             ->where('mobile', $data['mobile'])

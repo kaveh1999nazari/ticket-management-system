@@ -10,6 +10,8 @@ class UserMeta extends Model
 {
     use HasFactory;
 
+    protected $table = 'users_meta_fields';
+
     protected $fillable = [
         'meta_key',
         'type',

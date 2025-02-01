@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Models\Auth;
 use App\Models\User;
+use App\Models\UserMeta;
 
 class AuthRepository
 {
@@ -23,5 +24,14 @@ class AuthRepository
             ->where('mobile', $data['mobile'])
             ->where('code', $data['code'])
             ->first();
+    }
+
+    public function update(array $data): int
+    {
+        return Auth::query()
+            ->where('id', $data['id'])
+            ->update([
+                'is_verified' => $data['is_verified']
+            ]);
     }
 }

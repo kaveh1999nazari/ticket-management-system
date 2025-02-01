@@ -32,6 +32,10 @@ class AuthService
         $code = $this->authRepository->get($data);
 
         if ($code && $code->code === $data['code'] && $code->code_expired_at > now()) {
+            $this->authRepository->update([
+                'id' => $code->id,
+                'is_verified' => true
+                ]);
             $user = $this->usersRepository->get($data['mobile']);
             $token = auth('api')->login($user);
             return $this->respondWithToken($token);

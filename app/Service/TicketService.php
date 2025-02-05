@@ -8,7 +8,7 @@ use App\Repository\TicketRepository;
 class TicketService
 {
     public function __construct(
-        private TicketRepository $ticketRepository
+        private readonly TicketRepository $ticketRepository
     )
     {
     }
@@ -20,21 +20,21 @@ class TicketService
 
     public function list(int $userId): array
     {
-
+        return $this->ticketRepository->list($userId);
     }
 
     public function get(int $id): Ticket
     {
-
+        return $this->ticketRepository->get($id);
     }
 
     public function update(array $data): int
     {
-
+        return $this->ticketRepository->update($data);
     }
 
     public function delete(int $id): int
     {
-
+        return $this->ticketRepository->delete($id);
     }
 }

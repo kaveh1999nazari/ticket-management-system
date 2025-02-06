@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Ticket extends Model
 {
@@ -14,4 +15,9 @@ class Ticket extends Model
         'description',
         'status'
     ];
+
+    public function ticketReply(): HasMany
+    {
+        return $this->hasMany(TicketReply::class);
+    }
 }

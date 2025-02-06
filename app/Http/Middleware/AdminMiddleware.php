@@ -16,8 +16,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $roles = json_decode($request->user()->role, true);
-        if (!is_array($roles) || !in_array('admin', $roles)) {
+        if (!in_array('admin', $request->user()->role)) {
             abort(403, 'شما ادمین نیستید');
         }
 

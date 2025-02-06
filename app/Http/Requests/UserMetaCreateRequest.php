@@ -25,7 +25,7 @@ class UserMetaCreateRequest extends FormRequest
             'meta_key' => 'required',
             'label' => 'nullable',
             'type' => 'required',
-            'validation_rules' => 'required',
+            'validation_rules' => 'nullable',
         ];
     }
 }

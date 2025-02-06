@@ -2,6 +2,8 @@
 
 namespace App\Service;
 
+use App\Exceptions\TicketReplyNotAccess;
+use App\Models\Ticket;
 use App\Models\TicketReply;
 use App\Repository\TicketReplyRepository;
 
@@ -13,9 +15,22 @@ class TicketReplyService
     {
     }
 
-    public function create(array $data): TicketReply
+    public function create(array $data, int $ticketId): TicketReply
     {
-        return $this->ticketReplyRepository->create($data);
+        $user = Auth()->user();
+        $ticket = Ticket::query()
+            ->findOrFail($ticketId);
+
+        if(! $this->canReplyToTicket($user, $ticket))
+        {
+            return throw new TicketReplyNotAccess();
+        }
+
+        return $this->ticketReplyRepository->create([
+            'user_id' => Auth()->id(),
+            'ticket_id' => $ticketId,
+            ...$data
+        ]);
     }
 
     public function list(int $ticketId, int $userId): array
@@ -36,5 +51,19 @@ class TicketReplyService
     public function delete(int $id): int
     {
         return $this->ticketReplyRepository->delete($id);
+    }
+
+    private function canReplyToTicket($user, $ticket): bool
+    {
+        if(in_array('admin', $user->role))
+        {
+            return true;
+        }
+
+        return $ticket->user_id === $user->id ||
+            TicketReply::query()
+            ->where('ticket_id', $ticket->id)
+            ->where('user_id', '===', $user->id)
+            ->exists();
     }
 }

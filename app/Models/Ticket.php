@@ -16,8 +16,8 @@ class Ticket extends Model
         'status'
     ];
 
-    public function ticketReply(): HasMany
+    public function replies(): HasMany
     {
-        return $this->hasMany(TicketReply::class);
+        return $this->hasMany(TicketReply::class, 'ticket_id');
     }
 }

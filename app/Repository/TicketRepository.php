@@ -20,10 +20,11 @@ class TicketRepository
             ->get();
     }
 
-    public function get(int $id): Ticket
+    public function get(int $id, int $userId): Ticket|null
     {
         return Ticket::query()
             ->where('id', $id)
+            ->where('user_id', $userId)
             ->first();
     }
 
@@ -41,6 +42,15 @@ class TicketRepository
         return Ticket::query()
             ->where('id', $id)
             ->delete();
+    }
+
+    public function listReplies(int $id, int $userId)
+    {
+        return Ticket::query()
+            ->where('id', $id)
+            ->where('user_id', $userId)
+            ->with('replies')
+            ->first();
     }
 
 }

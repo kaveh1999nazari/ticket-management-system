@@ -21,8 +21,6 @@ Route::middleware(['auth:api', 'admin'])->group(function () {
     Route::get('/users/fields', [UserMetaController::class, 'list']);
     Route::delete('/users/fields/{id}', [UserMetaController::class, 'delete']);
     Route::put('/tickets', [TicketController::class, 'update']);
-    Route::get('/tickets', [TicketController::class, 'list']);
-    Route::get('/tickets/{id}', [TicketController::class, 'get']);
 });
 
 Route::middleware(['auth:api', 'user'])->group(function () {
@@ -31,4 +29,7 @@ Route::middleware(['auth:api', 'user'])->group(function () {
 
 Route::middleware('auth:api')->group(function () {
     Route::post('/tickets/{id}/reply', [TicketReplyController::class, 'create']);
+    Route::get('/tickets', [TicketController::class, 'list']);
+    Route::get('/tickets/{id}', [TicketController::class, 'get']);
+    Route::get('/tickets/{id}/reply', [TicketController::class, 'listReplies']);
 });

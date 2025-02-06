@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\TicketNotFoundException;
 use App\Http\Requests\TicketCreateRequest;
 use App\Http\Requests\TicketUpdateRequest;
 use App\Service\TicketService;
@@ -36,6 +37,14 @@ class TicketController extends Controller
     public function update(TicketUpdateRequest $request): JsonResponse
     {
         return response()->json($this->ticketService->update($request->validated()));
+    }
+
+    /**
+     * @throws TicketNotFoundException
+     */
+    public function listReplies(int $id): JsonResponse
+    {
+        return response()->json($this->ticketService->listReplies($id));
     }
 
 }

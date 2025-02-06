@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('authorize', function (Blueprint $table) {
+        Schema::create('user_tokens', function (Blueprint $table) {
             $table->id();
-            $table->string('mobile');
+            $table->string('mobile')->unique();
             $table->string('code')->nullable();
             $table->dateTime('code_expired_at')->nullable();
-            $table->boolean('is_verified')->nullable()->default(false);
+            $table->text('token')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('authorize');
+        Schema::dropIfExists('user_tokens');
     }
 };

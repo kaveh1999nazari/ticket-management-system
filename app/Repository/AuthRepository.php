@@ -11,8 +11,9 @@ class AuthRepository
     public function create(string $mobile): Auth
     {
         return Auth::query()
-            ->create([
+            ->updateOrCreate([
                 'mobile' => $mobile,
+            ],[
                 'code' => rand(100000, 999999),
                 'code_expired_at' => now()->addMinutes(3)
             ]);
@@ -31,7 +32,7 @@ class AuthRepository
         return Auth::query()
             ->where('id', $data['id'])
             ->update([
-                'is_verified' => $data['is_verified']
+                'token' => $data['token']
             ]);
     }
 }

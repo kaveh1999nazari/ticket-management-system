@@ -29,15 +29,15 @@ class AuthService
             throw new UserNotFound();
         }
 
-        $code = $this->authRepository->get($data);
+        $auth = $this->authRepository->get($data);
 
-        if ($code && $code->code === $data['code'] && $code->code_expired_at > now()) {
-            $this->authRepository->update([
-                'id' => $code->id,
-                'is_verified' => true
-                ]);
+        if ($auth && $auth->code === $data['code'] && $auth->code_expired_at > now()) {
             $user = $this->usersRepository->get($data['mobile']);
             $token = auth('api')->login($user);
+            $this->authRepository->update([
+                'id' => $auth->id,
+                'token' => $token
+            ]);
             return $this->respondWithToken($token);
         }else{
             return response()->json([

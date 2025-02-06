@@ -9,7 +9,7 @@ class Auth extends Model
 {
     use HasFactory;
 
-    protected $table = 'authorize';
+    protected $table = 'user_tokens';
 
     protected $fillable = [
         'mobile',

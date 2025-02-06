@@ -15,7 +15,10 @@ class TicketService
 
     public function create(array $data): Ticket
     {
-        return $this->ticketRepository->create($data);
+        return $this->ticketRepository->create([
+            'user_id' => Auth()->id(),
+            ...$data
+        ]);
     }
 
     public function list(int $userId): array

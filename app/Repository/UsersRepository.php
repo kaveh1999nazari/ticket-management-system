@@ -2,23 +2,40 @@
 
 namespace App\Repository;
 
+use App\Exceptions\MetaFieldNotDefined;
 use App\Models\User;
+use App\Models\UserMetaField;
 
 class UsersRepository
 {
     public function create(array $data)
     {
-        return User::query()
+        $meta = $data['meta'] ?? [];
+
+        $validMeta = [];
+        foreach ($meta as $key => $value) {
+            if (!UserMetaField::where('meta_key', $key)->exists()) {
+                throw new MetaFieldNotDefined($key);
+            }
+
+            $validMeta[$key] = $value;
+        }
+
+        $user = User::query()
             ->create([
-                'mobile' => $data['mobile'],
-                'meta' => json_encode([
-                    'national_code' => $data['meta']['1'],
-                    'birth_date' => $data['meta']['2'],
-                    'first_name' => $data['meta']['3'] ?? null,
-                    'last_name' => $data['meta']['4'] ?? null
-                ]),
-                'password' => '12345678',
+            'mobile' => $data['mobile'],
+            'meta' => json_encode($validMeta),
+            'password' => '12345678',
+        ]);
+
+        foreach ($validMeta as $key => $value) {
+            $user->meta()->create([
+                'meta_key' => $key,
+                'meta_value' => json_encode($value),
             ]);
+        }
+
+        return $user;
     }
 
     public function get(string $mobile)

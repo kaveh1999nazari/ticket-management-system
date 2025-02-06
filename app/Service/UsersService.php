@@ -18,6 +18,7 @@ class UsersService
         if ($check === true) {
             throw new UserAlreadyExist();
         }
+
         return $this->usersRepository->create($data);
     }
 

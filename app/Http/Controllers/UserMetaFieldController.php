@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserMetaCreateRequest;
-use App\Service\UserMetaService;
+use App\Service\UserMetaFieldService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class UserMetaController
+class UserMetaFieldController
 {
-    public function __construct(private readonly UserMetaService $userMetaService)
+    public function __construct(private readonly UserMetaFieldService $userMetaService)
     {
     }
 

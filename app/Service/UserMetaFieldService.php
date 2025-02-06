@@ -3,17 +3,17 @@
 namespace App\Service;
 
 use App\Exceptions\UserMetaNotFound;
-use App\Models\UserMeta;
-use App\Repository\UserMetaRepository;
+use App\Models\UserMetaField;
+use App\Repository\UserMetaFieldRepository;
 use Illuminate\Database\Eloquent\Collection;
 
-class UserMetaService
+class UserMetaFieldService
 {
-    public function __construct(private readonly UserMetaRepository $metaRepository)
+    public function __construct(private readonly UserMetaFieldRepository $metaRepository)
     {
     }
 
-    public function create(array $data): UserMeta
+    public function create(array $data): UserMetaField
     {
         return $this->metaRepository->create($data);
     }

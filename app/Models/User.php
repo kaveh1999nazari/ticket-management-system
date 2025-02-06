@@ -21,14 +21,12 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $fillable = [
         'mobile',
-        'meta'
     ];
 
     /**
      * @var string[] $casts
      */
     protected $casts = [
-        'meta' => 'array',
         'role' => 'array'
     ];
 
@@ -39,6 +37,36 @@ class User extends Authenticatable implements JWTSubject
     protected $attributes = [
         'role' => '["user"]',
     ];
+
+    public function meta()
+    {
+        return $this->hasMany(UserMeta::class);
+    }
+
+    public function getMeta(string $key, $default = null)
+    {
+        return $this->meta()
+            ->where('meta_key', $key)
+            ->value('meta_value') ?? $default;
+    }
+
+    public function setMeta(string $key, $value)
+    {
+        $this->meta()->updateOrCreate(
+            ['meta_key' => $key],
+            ['meta_value' => $value]
+        );
+    }
+
+    public function removeMeta(string $key): void
+    {
+        $this->meta()->where('meta_key', $key)->delete();
+    }
+
+    public function getAllMeta()
+    {
+        return $this->meta()->pluck('meta_value', 'meta_key')->toArray();
+    }
 
     // for JWT Token:
     public function getJWTIdentifier()

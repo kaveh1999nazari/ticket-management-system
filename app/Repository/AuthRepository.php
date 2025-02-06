@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Models\Auth;
 use App\Models\User;
-use App\Models\UserMeta;
+use App\Models\UserMetaField;
 
 class AuthRepository
 {

@@ -19,6 +19,9 @@ Route::middleware(['auth:api', 'admin'])->group(function () {
     Route::post('/users/fields', [UserMetaController::class, 'create']);
     Route::get('/users/fields', [UserMetaController::class, 'list']);
     Route::delete('/users/fields/{id}', [UserMetaController::class, 'delete']);
+    Route::put('/tickets', [TicketController::class, 'update']);
+    Route::get('/tickets', [TicketController::class, 'list']);
+    Route::get('/tickets/{id}', [TicketController::class, 'get']);
 });
 
 Route::middleware(['auth:api', 'user'])->group(function () {

@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Models\Ticket;
 use App\Repository\TicketRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 class TicketService
 {
@@ -21,9 +22,9 @@ class TicketService
         ]);
     }
 
-    public function list(int $userId): array
+    public function list(): Collection
     {
-        return $this->ticketRepository->list($userId);
+        return $this->ticketRepository->list(Auth()->id());
     }
 
     public function get(int $id): Ticket

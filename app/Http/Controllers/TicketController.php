@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TicketCreateRequest;
-use App\Models\Ticket;
-use App\Models\UserMeta;
+use App\Http\Requests\TicketUpdateRequest;
 use App\Service\TicketService;
 use Illuminate\Http\JsonResponse;
 
@@ -22,6 +21,21 @@ class TicketController extends Controller
         return response()->json([
             'ticket' => $ticket->id
         ]);
+    }
+
+    public function list(): JsonResponse
+    {
+        return response()->json($this->ticketService->list());
+    }
+
+    public function get(int $id): JsonResponse
+    {
+        return response()->json($this->ticketService->get($id));
+    }
+
+    public function update(TicketUpdateRequest $request): JsonResponse
+    {
+        return response()->json($this->ticketService->update($request->validated()));
     }
 
 }

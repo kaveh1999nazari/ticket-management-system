@@ -22,7 +22,6 @@ class TicketCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => auth()->id(),
             'title' => 'required',
             'description' => 'required',
         ];

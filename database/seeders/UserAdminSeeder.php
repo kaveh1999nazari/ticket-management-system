@@ -17,7 +17,7 @@ class UserAdminSeeder extends Seeder
             ->create([
                 'mobile' => '09387578068',
                 'password' => '12345678',
-                'role' => json_encode(['admin'])
+                'role' => ['admin']
             ]);
     }
 }

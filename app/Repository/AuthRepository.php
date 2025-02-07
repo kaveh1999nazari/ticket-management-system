@@ -3,8 +3,6 @@
 namespace App\Repository;
 
 use App\Models\Auth;
-use App\Models\User;
-use App\Models\UserMetaField;
 
 class AuthRepository
 {

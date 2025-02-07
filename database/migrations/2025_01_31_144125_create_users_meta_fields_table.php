@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users_meta_fields', function (Blueprint $table) {
+        Schema::create('meta_fields', function (Blueprint $table) {
             $table->id();
             $table->string('meta_key')->unique();
             $table->string('label')->nullable();
@@ -39,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users_meta_fields');
+        Schema::dropIfExists('meta_fields');
     }
 };

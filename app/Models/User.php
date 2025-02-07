@@ -38,7 +38,7 @@ class User extends Authenticatable implements JWTSubject
         'role' => '["user"]',
     ];
 
-    public function meta()
+    public function meta(): HasMany
     {
         return $this->hasMany(UserMeta::class);
     }
@@ -46,26 +46,26 @@ class User extends Authenticatable implements JWTSubject
     public function getMeta(string $key, $default = null)
     {
         return $this->meta()
-            ->where('meta_key', $key)
+            ->where('meta_id', $key)
             ->value('meta_value') ?? $default;
     }
 
-    public function setMeta(string $key, $value)
+    public function getAllMeta()
+    {
+        return $this->meta()->pluck('meta_value', 'meta_id')->toArray();
+    }
+
+    public function setMeta(string $key, $value): void
     {
         $this->meta()->updateOrCreate(
-            ['meta_key' => $key],
+            ['meta_id' => $key],
             ['meta_value' => $value]
         );
     }
 
     public function removeMeta(string $key): void
     {
-        $this->meta()->where('meta_key', $key)->delete();
-    }
-
-    public function getAllMeta()
-    {
-        return $this->meta()->pluck('meta_value', 'meta_key')->toArray();
+        $this->meta()->where('meta_id', $key)->delete();
     }
 
     // for JWT Token:

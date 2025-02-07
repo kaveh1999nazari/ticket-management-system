@@ -3,7 +3,7 @@
 namespace App\Service;
 
 use App\Exceptions\UserMetaNotFound;
-use App\Models\UserMetaField;
+use App\Models\MetaField;
 use App\Repository\UserMetaFieldRepository;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -13,7 +13,7 @@ class UserMetaFieldService
     {
     }
 
-    public function create(array $data): UserMetaField
+    public function create(array $data): MetaField
     {
         return $this->metaRepository->create($data);
     }

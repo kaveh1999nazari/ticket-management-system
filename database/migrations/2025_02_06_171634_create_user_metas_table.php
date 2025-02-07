@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('user_metas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('meta_key');
+            $table->foreignId('meta_id')->constrained('meta_fields')->onDelete('cascade');
             $table->text('meta_value')->nullable();
             $table->timestamps();
 
-            $table->unique(['user_id', 'meta_key']);
+            $table->unique(['user_id', 'meta_id']);
         });
     }
 

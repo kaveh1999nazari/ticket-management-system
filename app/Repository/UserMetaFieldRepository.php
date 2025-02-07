@@ -2,33 +2,33 @@
 
 namespace App\Repository;
 
-use App\Models\UserMetaField;
+use App\Models\MetaField;
 use Illuminate\Database\Eloquent\Collection;
 
 class UserMetaFieldRepository
 {
-    public function create(array $data): UserMetaField
+    public function create(array $data): MetaField
     {
-        return UserMetaField::query()
+        return MetaField::query()
             ->create($data);
     }
 
     public function list(): Collection
     {
-        return UserMetaField::query()
+        return MetaField::query()
             ->get();
     }
 
     public function get(int $id): Collection|null
     {
-        return UserMetaField::query()
+        return MetaField::query()
             ->where('id', $id)
             ->first();
     }
 
     public function delete(int $id): int
     {
-        return UserMetaField::query()
+        return MetaField::query()
             ->where('id', $id)
             ->delete();
     }

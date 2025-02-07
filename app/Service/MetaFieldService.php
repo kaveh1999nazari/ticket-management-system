@@ -4,12 +4,12 @@ namespace App\Service;
 
 use App\Exceptions\UserMetaNotFound;
 use App\Models\MetaField;
-use App\Repository\UserMetaFieldRepository;
+use App\Repository\MetaFieldRepository;
 use Illuminate\Database\Eloquent\Collection;
 
-class UserMetaFieldService
+class MetaFieldService
 {
-    public function __construct(private readonly UserMetaFieldRepository $metaRepository)
+    public function __construct(private readonly MetaFieldRepository $metaRepository)
     {
     }
 

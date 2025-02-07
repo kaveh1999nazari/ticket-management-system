@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Models\MetaField;
 use Illuminate\Database\Eloquent\Collection;
 
-class UserMetaFieldRepository
+class MetaFieldRepository
 {
     public function create(array $data): MetaField
     {
@@ -31,6 +31,13 @@ class UserMetaFieldRepository
         return MetaField::query()
             ->where('id', $id)
             ->delete();
+    }
+
+    public function isValidMetaField(int $key): bool
+    {
+        return MetaField::query()
+            ->where('id', $key)
+            ->exists();
     }
 
 }

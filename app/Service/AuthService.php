@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Exceptions\UserNotFound;
 use App\Models\Auth;
+use App\Notifications\UserLoggedInNotification;
 use App\Repository\AuthRepository;
 use App\Repository\UsersRepository;
 use Illuminate\Http\JsonResponse;
@@ -38,6 +39,7 @@ class AuthService
                 'id' => $auth->id,
                 'token' => $token
             ]);
+            $user->notify(new UserLoggedInNotification());
             return $this->respondWithToken($token);
         }else{
             return response()->json([

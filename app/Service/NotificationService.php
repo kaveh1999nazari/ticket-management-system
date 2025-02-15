@@ -35,6 +35,6 @@ class NotificationService
             ->pluck('name')
             ->toArray();
 
-        $user->notify(new $notificationClass($message ?? $notificationType->name, $channels));
+        $user->notify(new $notificationClass($channels, $message ?? $notificationType->name));
     }
 }

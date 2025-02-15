@@ -2,10 +2,7 @@
 
 namespace App\Notifications;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
 class UserLoggedInNotification extends BaseNotification
 {
@@ -16,6 +13,7 @@ class UserLoggedInNotification extends BaseNotification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
+                    ->subject('ورود به حساب کاربری')
                     ->line('کاربرگرامی،')
                     ->line('شما وارد پنل خود شده اید');
     }

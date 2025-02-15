@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Events\UserRegistered;
 use App\Exceptions\MetaFieldNotDefined;
 use App\Exceptions\UserAlreadyExist;
 use App\Models\User;
@@ -41,6 +42,8 @@ class UsersService
         if (!empty($validMeta)) {
             $this->usersRepository->attachMeta($user, $validMeta);
         }
+
+        event(new UserRegistered($user));
 
         return $user;
     }

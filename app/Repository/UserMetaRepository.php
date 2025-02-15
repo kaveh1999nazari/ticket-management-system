@@ -15,4 +15,14 @@ class UserMetaRepository
             ->get('meta_value');
     }
 
+    public function getEmailByUserId(int $userId): ?string
+    {
+        $emailMeta = UserMeta::query()
+            ->where('user_id', $userId)
+            ->where('meta_id', 5)
+            ->first();
+
+        return $emailMeta->getAttributes()['meta_value'] ?? null;
+    }
+
 }

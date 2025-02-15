@@ -10,7 +10,7 @@ use App\Models\User;
 
 class NotificationService
 {
-    public static function sendNotification(string $notificationClass, User $user, int $typeId, ?string $message = null)
+    public static function sendNotification(string $notificationClass, User $user, int $typeId, ?string $message = null): void
     {
         $notificationType = NotificationType::query()
             ->where('id', $typeId)

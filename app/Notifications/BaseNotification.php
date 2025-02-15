@@ -10,6 +10,11 @@ abstract class BaseNotification extends Notification
 {
     use Queueable;
 
+
+    public function __construct(private readonly array $channels)
+    {
+    }
+
     /**
      * Get the notification's delivery channels.
      *
@@ -17,13 +22,7 @@ abstract class BaseNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        $channels = ['database'];
-
-        if (! empty($notifiable->email)) {
-            $channels[] = 'mail';
-        }
-
-        return $channels;
+        return $this->channels;
     }
 
     abstract public function toMail(object $notifiable): MailMessage;

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Repository\UserMetaRepository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -66,6 +67,11 @@ class User extends Authenticatable implements JWTSubject
     public function removeMeta(string $key): void
     {
         $this->meta()->where('meta_id', $key)->delete();
+    }
+
+    public function routeNotificationForMail()
+    {
+        return app(UserMetaRepository::class)->getEmailByUserId($this->id);
     }
 
     // for JWT Token:

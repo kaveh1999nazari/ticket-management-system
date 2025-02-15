@@ -7,7 +7,6 @@ use App\Exceptions\UserNotFound;
 use App\Models\Auth;
 use App\Notifications\UserLoggedInNotification;
 use App\Repository\AuthRepository;
-use App\Repository\UserMetaRepository;
 use App\Repository\UsersRepository;
 use Illuminate\Http\JsonResponse;
 

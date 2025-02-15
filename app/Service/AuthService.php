@@ -16,7 +16,6 @@ class AuthService
     public function __construct(
         private readonly AuthRepository $authRepository,
         private readonly UsersRepository $usersRepository,
-//        private readonly UserMetaRepository $userMetaRepository
     )
     {
     }
@@ -38,7 +37,6 @@ class AuthService
         }
 
         $auth = $this->authRepository->get($data);
-//        dd($this->userMetaRepository->get($auth->id, 5));
 
         if ($auth && $auth->code === $data['code'] && $auth->code_expired_at > now()) {
             $user = $this->usersRepository->get($data['mobile']);

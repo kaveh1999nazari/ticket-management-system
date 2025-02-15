@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Exceptions\NotFoundNotificationType;
 use App\Exceptions\UserNotFound;
 use App\Models\Auth;
 use App\Notifications\UserLoggedInNotification;
@@ -15,7 +16,7 @@ class AuthService
     public function __construct(
         private readonly AuthRepository $authRepository,
         private readonly UsersRepository $usersRepository,
-        private readonly UserMetaRepository $userMetaRepository
+//        private readonly UserMetaRepository $userMetaRepository
     )
     {
     }
@@ -25,6 +26,10 @@ class AuthService
         return $this->authRepository->create($mobile);
     }
 
+    /**
+     * @throws NotFoundNotificationType
+     * @throws UserNotFound
+     */
     public function confirmOtp(array $data): JsonResponse
     {
         $check = $this->usersRepository->checkExistMobile($data['mobile']);
@@ -42,7 +47,7 @@ class AuthService
                 'id' => $auth->id,
                 'token' => $token
             ]);
-            $user->notify(new UserLoggedInNotification());
+            NotificationService::sendNotification(UserLoggedInNotification::class, $user, 1);
             return $this->respondWithToken($token);
         }else{
             return response()->json([

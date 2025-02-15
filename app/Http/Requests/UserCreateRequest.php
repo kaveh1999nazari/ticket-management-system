@@ -26,7 +26,8 @@ class UserCreateRequest extends FormRequest
             'meta.1' => 'required|regex:/^\d{10}$/',
             'meta.2' => 'required',
             'meta.3' => 'nullable',
-            'meta.4' => 'nullable'
+            'meta.4' => 'nullable',
+            'meta.5' => 'nullable|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
         ];
     }
 }

@@ -17,7 +17,7 @@ class UsersService
     {
     }
 
-    public function register(array $data)
+    public function register(array $data): User
     {
         if ($this->usersRepository->checkExistMobile($data['mobile'])) {
             throw new UserAlreadyExist();

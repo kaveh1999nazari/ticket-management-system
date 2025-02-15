@@ -22,7 +22,7 @@ class UserMetaRepository
             ->where('meta_id', 5)
             ->first();
 
-        return $emailMeta->getAttributes()['meta_value'] ?? null;
+        return trim($emailMeta->getAttributes()['meta_value'], '""') ?? null;
     }
 
 }

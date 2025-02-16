@@ -2,8 +2,10 @@
 
 namespace App\Service;
 
+use App\Exceptions\NotFoundNotificationType;
 use App\Exceptions\TicketNotFoundException;
 use App\Models\Ticket;
+use App\Notifications\TicketCreateNotification;
 use App\Repository\TicketRepository;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
@@ -16,12 +18,20 @@ class TicketService
     {
     }
 
+    /**
+     * @throws NotFoundNotificationType
+     */
     public function create(array $data): Ticket
     {
-        return $this->ticketRepository->create([
+        $ticket = $this->ticketRepository->create([
             'user_id' => Auth()->id(),
             ...$data
         ]);
+        NotificationService::sendNotification(TicketCreateNotification::class, $ticket->user, 2, [
+            'ticket' => $ticket,
+        ]);
+
+        return $ticket;
     }
 
     public function list(): Collection

@@ -14,7 +14,8 @@ The **ticket-management-system** is a support ticket management designed to faci
 - Role-based access: Users, Support Agents, Admins.
 
 ### 📧 Notifications
-- Email or SMS for ticket status changes.
+- Email or InApp for ticket status changes.
+- Dynamic Notification for users
 
 ### 🏷️ Custom Fields
 - Admins can define additional fields (e.g., Priority, Department).

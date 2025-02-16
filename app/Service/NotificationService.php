@@ -10,7 +10,7 @@ use App\Models\User;
 
 class NotificationService
 {
-    public static function sendNotification(string $notificationClass, User $user, int $typeId, ?string $message = null): void
+    public static function sendNotification(string $notificationClass, User $user, int $typeId, ?array $data = []): void
     {
         $notificationType = NotificationType::query()
             ->where('id', $typeId)
@@ -35,6 +35,6 @@ class NotificationService
             ->pluck('name')
             ->toArray();
 
-        $user->notify(new $notificationClass($channels, $message ?? $notificationType->name));
+        $user->notify(new $notificationClass($channels, $data));
     }
 }

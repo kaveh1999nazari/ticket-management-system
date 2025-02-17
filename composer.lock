@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2213e1d2eb6698c7489f9fc9ce6435eb",
+    "content-hash": "4dd0181b037f659f40af037760e34df0",
     "packages": [
         {
             "name": "brick/math",
@@ -1053,6 +1053,44 @@
                 }
             ],
             "time": "2025-02-03T10:55:03+00:00"
+        },
+        {
+            "name": "kaveh/notification-service",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kaveh1999nazari/laravel-notification-service.git",
+                "reference": "15e47d318721eef4fb035bd20f3dd211b2fa7e9c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kaveh1999nazari/laravel-notification-service/zipball/15e47d318721eef4fb035bd20f3dd211b2fa7e9c",
+                "reference": "15e47d318721eef4fb035bd20f3dd211b2fa7e9c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/notifications": "*",
+                "laravel/framework": "*",
+                "php": "^8.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Kaveh\\NotificationService\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "kaveh",
+                    "email": "kaveh1999nazari@gmail.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/kaveh1999nazari/laravel-notification-service/issues",
+                "source": "https://github.com/kaveh1999nazari/laravel-notification-service/tree/V1.0"
+            },
+            "time": "2025-02-17T05:16:20+00:00"
         },
         {
             "name": "kavenegar/laravel",
@@ -8470,7 +8508,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.2"
+        "php": "^8.3"
     },
     "platform-dev": {},
     "plugin-api-version": "2.6.0"

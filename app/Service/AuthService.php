@@ -9,6 +9,7 @@ use App\Notifications\UserLoggedInNotification;
 use App\Repository\AuthRepository;
 use App\Repository\UsersRepository;
 use Illuminate\Http\JsonResponse;
+use Kaveh\NotificationService\Services\NotificationService;
 
 class AuthService
 {
@@ -27,6 +28,7 @@ class AuthService
     /**
      * @throws NotFoundNotificationType
      * @throws UserNotFound
+     * @throws \Kaveh\NotificationService\Exceptions\NotFoundNotificationType
      */
     public function confirmOtp(array $data): JsonResponse
     {

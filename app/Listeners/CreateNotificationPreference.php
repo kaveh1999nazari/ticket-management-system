@@ -3,9 +3,9 @@
 namespace App\Listeners;
 
 use App\Events\UserRegistered;
-use App\Models\NotificationPreference;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Kaveh\NotificationService\Models\NotificationPreference;
 
 class CreateNotificationPreference
 {

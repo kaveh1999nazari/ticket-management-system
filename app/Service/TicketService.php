@@ -7,8 +7,8 @@ use App\Exceptions\TicketNotFoundException;
 use App\Models\Ticket;
 use App\Notifications\TicketCreateNotification;
 use App\Repository\TicketRepository;
-use Exception;
 use Illuminate\Database\Eloquent\Collection;
+use Kaveh\NotificationService\Services\NotificationService;
 
 class TicketService
 {
@@ -20,6 +20,7 @@ class TicketService
 
     /**
      * @throws NotFoundNotificationType
+     * @throws \Kaveh\NotificationService\Exceptions\NotFoundNotificationType
      */
     public function create(array $data): Ticket
     {

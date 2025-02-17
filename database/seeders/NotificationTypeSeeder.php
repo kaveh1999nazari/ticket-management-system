@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\NotificationType;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Kaveh\NotificationService\Models\NotificationType;
 
 class NotificationTypeSeeder extends Seeder
 {

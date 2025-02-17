@@ -6,7 +6,7 @@ namespace App\Models;
 use App\Repository\UserMetaRepository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Kaveh\NotificationService\Abstracts\Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -88,5 +88,10 @@ class User extends Authenticatable implements JWTSubject
     public function ticketReply(): HasMany
     {
         return $this->hasMany(TicketReply::class);
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 }

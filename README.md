@@ -8,6 +8,7 @@ The **ticket-management-system** is a support ticket management designed to faci
 - Users can create support tickets.
 - Tickets can be categorized (e.g., Technical, Billing, General Inquiry).
 - Status updates (Open, In Progress, Closed).
+- **📷 File Upload:** Users can attach images to describe their issue.
 
 ### 🔐 Authentication & User Roles
 - User registration & login with OTP verification.
@@ -15,7 +16,7 @@ The **ticket-management-system** is a support ticket management designed to faci
 
 ### 📧 Notifications
 - Email or InApp for ticket status changes.
-- Dynamic Notification for users
+- Dynamic Notification for users.
 
 ### 🏷️ Custom Fields
 - Admins can define additional fields (e.g., Priority, Department).
@@ -30,6 +31,11 @@ The **ticket-management-system** is a support ticket management designed to faci
 - **Database:** MySQL
 - **Authentication:** JWT-based authentication
 - **Containerization:** Docker
+
+## 📤 File Upload Support
+- Users can **attach images** when creating a ticket.
+- Supported formats: `jpeg, png, jpg, gif, svg, webp`
+- Max file size: **2MB**
 
 ## 🔧 Installation
 ### Prerequisites
@@ -55,7 +61,3 @@ php artisan migrate
 
 # Start the server
 php artisan serve
-```
-
-## 📄 License
-This project is licensed under the MIT License.

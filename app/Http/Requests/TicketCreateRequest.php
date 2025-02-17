@@ -24,6 +24,7 @@ class TicketCreateRequest extends FormRequest
         return [
             'title' => 'required',
             'description' => 'required',
+            'file' => 'nullable',
         ];
     }
 }

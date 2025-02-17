@@ -6,6 +6,7 @@ namespace App\Models;
 use App\Repository\UserMetaRepository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Kaveh\NotificationService\Abstracts\Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -93,5 +94,10 @@ class User extends Authenticatable implements JWTSubject
     public function getId()
     {
         return $this->id;
+    }
+
+    public function medias(): MorphMany
+    {
+        return $this->morphMany(Media::class, 'mediable');
     }
 }

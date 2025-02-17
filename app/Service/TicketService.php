@@ -8,6 +8,7 @@ use App\Models\Ticket;
 use App\Notifications\TicketCreateNotification;
 use App\Repository\TicketRepository;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\UploadedFile;
 use Kaveh\NotificationService\Services\NotificationService;
 
 class TicketService
@@ -28,6 +29,12 @@ class TicketService
             'user_id' => Auth()->id(),
             ...$data
         ]);
+
+
+        if (!empty($data['file']) && $data['file'] instanceof UploadedFile) {
+            MediaService::uploadMedia($data['file'], $ticket);
+        }
+
         NotificationService::sendNotification(TicketCreateNotification::class, $ticket->user, 2, [
             'ticket' => $ticket,
         ]);

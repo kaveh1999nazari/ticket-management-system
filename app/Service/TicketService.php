@@ -9,6 +9,7 @@ use App\Notifications\TicketCreateNotification;
 use App\Repository\TicketRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\UploadedFile;
+use Kaveh\LaravelMorphService\Services\MediaService;
 use Kaveh\NotificationService\Services\NotificationService;
 
 class TicketService

@@ -7,6 +7,7 @@ use App\Repository\UserMetaRepository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Kaveh\LaravelMorphService\Models\Media;
 use Kaveh\NotificationService\Abstracts\Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;

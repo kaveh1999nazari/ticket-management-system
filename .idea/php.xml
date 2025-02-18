@@ -140,6 +140,7 @@
       <path value="$PROJECT_DIR$/vendor/kavenegar/laravel" />
       <path value="$PROJECT_DIR$/vendor/kavenegar/php" />
       <path value="$PROJECT_DIR$/vendor/kaveh/notification-service" />
+      <path value="$PROJECT_DIR$/vendor/kaveh/morph-service" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.3" />
